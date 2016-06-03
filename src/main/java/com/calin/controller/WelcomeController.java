@@ -1,7 +1,11 @@
 package com.calin.controller;
 
+import com.calin.model.User;
+import com.calin.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -9,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class WelcomeController {
+
+    @Autowired
+    UserServiceImpl userService;
 
     private static final String WELCOME_VARIABLE = "welcome";
 
@@ -19,6 +26,13 @@ public class WelcomeController {
 
         model.addAttribute(WELCOME_VARIABLE, welcomeMessage);
 
+        return view;
+    }
+
+    @RequestMapping("/user/{id}")
+    public String userById(Model model, @PathVariable("id") Integer id) {
+        String view = "welcome";
+        model.addAttribute(WELCOME_VARIABLE, userService.getUserById(id).getFirstName());
         return view;
     }
 }
