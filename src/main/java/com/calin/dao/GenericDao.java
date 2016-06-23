@@ -1,9 +1,9 @@
 package com.calin.dao;
 
-import com.calin.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class GenericDao {
 
-    @Resource(name = "sessionFactory")
+    @Autowired
     public SessionFactory sessionFactory;
 
     public <T> T save(final T o) {
@@ -28,7 +28,7 @@ public class GenericDao {
     }
 
     public <T> T get(final Class<T> type, final Integer id) {
-        return (T) sessionFactory.openSession().get(type, id);
+        return (T) sessionFactory.getCurrentSession().get(type, id);
     }
 
     public <T> void saveOrUpdate(final T o) {

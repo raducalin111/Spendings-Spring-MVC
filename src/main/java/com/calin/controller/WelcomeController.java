@@ -1,6 +1,5 @@
 package com.calin.controller;
 
-import com.calin.model.User;
 import com.calin.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
