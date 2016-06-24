@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by Calin on 6/1/2016.
@@ -18,7 +19,7 @@ public class WelcomeController {
 
     private static final String WELCOME_VARIABLE = "welcome";
 
-    @RequestMapping
+    @RequestMapping(value="/", method = RequestMethod.GET)
     public String home(Model model) {
         String welcomeMessage = "Welcome!";
         String view = "welcome";
